@@ -6,40 +6,40 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="Audio.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="ClearScene.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="Matrix.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="Polygon.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="StartScene.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="WinMain.cpp">
-      <Filter>リソースファイル</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
