@@ -327,8 +327,7 @@ bool App::InitD3D()
 	// ダミー画像読み込み
 	{
 		Texture::GetInstance()->LoadTexture("Player.jpg");
-		Texture::GetInstance()->LoadTexture("Bullet.png");
-		Texture::GetInstance()->LoadTexture("Enemy.png");
+		Texture::GetInstance()->LoadTexture("Enemy.jpg");
 	}
 
 	// 正常終了

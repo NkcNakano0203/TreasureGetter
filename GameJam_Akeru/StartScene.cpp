@@ -32,11 +32,6 @@ CPolygon	startObj;
 const int length = 100;
 
 constexpr int MaxBulletNum = 20;
-//Matrix bulletMatrixs[MaxBulletNum];
-//XMFLOAT3 bulletPos[MaxBulletNum];
-
-vector<Matrix> bulletMatrixs;
-vector<XMFLOAT3> bulletPos;
 
 vector<Matrix> enemyMatrixs;
 vector<XMFLOAT3> enemyPos;
@@ -53,22 +48,6 @@ void StartScene::Init()
 }
 
 XMFLOAT3 currentPos = XMFLOAT3(0, 0, 0);
-
-void InstantiateBullet(XMFLOAT3& pos)
-{
-	// 初期位置はキャラクターの場所
-	XMFLOAT3 position = pos;
-
-	// 行列とポリゴンを生成
-	Matrix bulletMatrix;
-	bulletMatrix.Identity();
-	startObj.Init(Shader::GetInstance()->GetShader());
-	bulletMatrix.SetPos(position);
-
-	// 弾の行列とポリゴンを配列に追加
-	bulletMatrixs.push_back(bulletMatrix);
-	bulletPos.push_back(position);
-}
 
 void InstantiateEnemy()
 {
@@ -111,11 +90,6 @@ SCENE StartScene::Update()
 	// カメラ設定更新
 	startCamera.Update(startMatrix.GetView(), startMatrix.GetProjection());
 	startMatrix.Identity();
-	for (size_t i = 0; i < bulletMatrixs.size(); i++)
-	{
-		startCamera.Update(bulletMatrixs[i].GetView(), bulletMatrixs[i].GetProjection());
-		bulletMatrixs[i].Identity();
-	}
 	for (size_t i = 0; i < enemyMatrixs.size(); i++)
 	{
 		startCamera.Update(enemyMatrixs[i].GetView(), enemyMatrixs[i].GetProjection());
@@ -152,16 +126,6 @@ SCENE StartScene::Update()
 	currentPos = XMFLOAT3(currentPos.x + moveSpeed * inputVec.x, currentPos.y + moveSpeed * inputVec.y, 0);
 	startMatrix.SetPos(currentPos);
 
-	// 発射
-	if (Input::GetInstance()->GetKeyDown(VK_SPACE)) { InstantiateBullet(currentPos); }
-
-	for (size_t i = 0; i < bulletMatrixs.size(); i++)
-	{
-		// 移動
-		bulletPos[i].x += 0.3f;
-		bulletMatrixs[i].SetPos(bulletPos[i]);
-	}
-
 	// 敵の生成
 
 	static float t = 0;
@@ -179,25 +143,6 @@ SCENE StartScene::Update()
 		// 移動
 		enemyPos[i].x -= 0.05f;
 		enemyMatrixs[i].SetPos(enemyPos[i]);
-	}
-
-	for (size_t i = 0; i < bulletPos.size(); i++)
-	{
-		for (size_t j = 0; j < enemyPos.size(); j++)
-		{
-			if (isHit(bulletPos[i], enemyPos[j]))
-			{
-				std::vector<XMFLOAT3>::iterator enemyPosItr = enemyPos.begin();
-				std::vector<Matrix>::iterator enemyMatItr = enemyMatrixs.begin();
-				enemyPosItr = enemyPos.erase(enemyPosItr += j);
-				enemyMatItr = enemyMatrixs.erase(enemyMatItr += j);
-
-				std::vector<XMFLOAT3>::iterator bulletPosItr = bulletPos.begin();
-				std::vector<Matrix>::iterator bulletMatItr = bulletMatrixs.begin();
-				bulletPosItr = bulletPos.erase(bulletPosItr += i);
-				bulletMatItr = bulletMatrixs.erase(bulletMatItr += i);
-			}
-		}
 	}
 
 	auto enemyPosItr = enemyPos.begin();
@@ -244,19 +189,10 @@ SCENE StartScene::Update()
 
 void StartScene::Render()
 {
+	//memo:深度ステンシルビューを使用しないときは後ろに書いた物から描画される
 	App::GetInstance()->RenderBegin(0.5f, 0.8f, 1.0f, 1.0f);
 
-
-	if (bulletMatrixs.size() > 0)
-	{
-		for (size_t i = 0; i < bulletMatrixs.size(); i++)
-		{
-			startObj.Render(bulletMatrixs[i].GetCB(), Texture::GetInstance()->GetTextureResource(1));
-		}
-	}
-
 	startObj.Render(startMatrix.GetCB(), Texture::GetInstance()->GetTextureResource(0));
-
 
 	if (enemyMatrixs.size() > 0)
 	{

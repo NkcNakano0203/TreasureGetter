@@ -161,6 +161,7 @@
     <ClInclude Include="ClearScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="MapTip.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="SceneManager.h" />
