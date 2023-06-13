@@ -4,7 +4,6 @@
 #include <wrl/client.h>			// DirectXのスマートポインタ
 #include <vector>
 
-
 struct TextureResources
 {
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pTexture = nullptr;// テクスチャ情報
@@ -14,6 +13,18 @@ struct TextureResources
 class Texture
 {
 public:
+	enum TextureName
+	{
+		TitleLogo = 0,
+		StartUI,
+		Player,
+		Enemy,
+		TreasureBoxClose,
+		TreasureBoxOpen,
+		Treasure,
+		ClearImage,
+	};
+
 	static Texture* GetInstance()
 	{
 		static Texture instance;

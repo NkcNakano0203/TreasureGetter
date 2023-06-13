@@ -41,15 +41,15 @@
     <ClCompile Include="WinMain.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="Audio.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
@@ -82,7 +82,7 @@
     <ClInclude Include="SceneManager.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="MapTip.h">
+    <ClInclude Include="Enemy.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
   </ItemGroup>

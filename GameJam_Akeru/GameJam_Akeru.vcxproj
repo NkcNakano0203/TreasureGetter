@@ -144,6 +144,7 @@
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearScene.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Matrix.cpp" />
@@ -156,12 +157,11 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Audio.h" />
-    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearScene.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="MapTip.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="SceneManager.h" />

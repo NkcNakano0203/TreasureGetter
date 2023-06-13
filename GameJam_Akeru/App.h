@@ -10,7 +10,7 @@
 #pragma comment(lib, "d3dCompiler.lib")	// シェーダーコードをコンパイルするために必要
 
 
-constexpr auto WINDOW_TITLE = L"DirectXSample";	// ウィンドウタイトル
+constexpr auto WINDOW_TITLE = L"GAMEAWEEK";	// ウィンドウタイトル
 constexpr auto CLASS_NAME = L"DIRECTXSAMPLE";	// ウィンドウクラス名
 constexpr int32_t WINDOW_W = 1280;				// ウィンドウサイズ幅
 constexpr int32_t WINDOW_H = 720;				// ウィンドウサイズ高さ

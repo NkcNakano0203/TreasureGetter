@@ -9,7 +9,6 @@
 
 #pragma comment(lib,"winmm.lib")
 
-
 // ƒV[ƒ“§Œä
 SceneManager* pScene;
 STATUS status = INIT;

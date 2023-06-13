@@ -17,13 +17,21 @@
 using namespace std;
 using namespace DirectX;
 
-Matrix		clearMatrix;
 Camera		clearCamera;
 CPolygon	clearObj;
 
+Matrix		treasureMatrix;
+Matrix		boxMatrix;
+Matrix		clearImageMatrix;
+
+float sinT;
+
 void ClearScene::Init()
 {
-	clearMatrix.Identity();
+	treasureMatrix.Identity();
+	boxMatrix.Identity();
+	clearImageMatrix.Identity();
+
 	clearCamera.SetViewPort();
 	int32_t n = Shader::GetInstance()->LoadShader("VertexShader.hlsl", "PixelShader.hlsl");
 	clearObj.Init(Shader::GetInstance()->GetShader(n));
@@ -35,18 +43,23 @@ SCENE ClearScene::Update()
 	SCENE rt = SCENE_MAX;
 
 	// カメラ設定更新
-	clearCamera.Update(clearMatrix.GetView(), clearMatrix.GetProjection());
+	clearCamera.Update(treasureMatrix.GetView(), treasureMatrix.GetProjection());
+	clearCamera.Update(boxMatrix.GetView(), boxMatrix.GetProjection());
+	clearCamera.Update(clearImageMatrix.GetView(), clearImageMatrix.GetProjection());
 
-	clearMatrix.Identity();
+	treasureMatrix.Identity();
+	boxMatrix.Identity();
+	clearImageMatrix.Identity();
 
-	static XMFLOAT3 pos;
-	pos.x = 1.0f;
-	clearMatrix.SetPos(pos);
+	XMFLOAT3 pos = XMFLOAT3(1, 0, 0);
+	sinT += 0.03f;
+	pos.y = (0.5f * sin(sinT));
+	treasureMatrix.SetPos(pos);
 
-	static float rot;
-	rot += 0.04f;
-	clearMatrix.SetRotationZ(rot);
+	boxMatrix.SetPos(XMFLOAT3(1, -1, 0));
 
+	clearImageMatrix.SetScale(XMFLOAT3(3, 3, 1));
+	clearImageMatrix.SetPos(XMFLOAT3(-1, 1, 0));
 
 	// シーン読み込み
 	if (Input::GetInstance()->GetKeyDown(VK_RETURN))
@@ -60,9 +73,11 @@ SCENE ClearScene::Update()
 
 void ClearScene::Render()
 {
-	App::GetInstance()->RenderBegin(0.8f, 0.8f, 0.3f, 1.0f);
+	App::GetInstance()->RenderBegin(1, 1, 1, 1);
 
-	clearObj.Render(clearMatrix.GetCB());
+	clearObj.Render(boxMatrix.GetCB(), Texture::GetInstance()->GetTextureResource(Texture::TreasureBoxOpen));
+	clearObj.Render(treasureMatrix.GetCB(), Texture::GetInstance()->GetTextureResource(Texture::Treasure));
+	clearObj.Render(clearImageMatrix.GetCB(), Texture::GetInstance()->GetTextureResource(Texture::ClearImage));
 
 	App::GetInstance()->RenderEnd();
 }
