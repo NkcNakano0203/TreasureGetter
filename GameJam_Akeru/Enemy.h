@@ -1,6 +1,7 @@
 #pragma once
 #include "Matrix.h"
 #include "Polygon.h"
+#include "Camera.h"
 
 class Enemy
 {
@@ -15,15 +16,13 @@ public:
 	void Move(DirectX::XMFLOAT3 value, bool relative = true);
 	void ChangeStatus(EnemyStatus nextStatus);
 	void SetScale(DirectX::XMFLOAT3 value);
+	void Identity();
+	void CameraUpdate(Camera& camera);
+	void Render(CPolygon& object);
 
 	EnemyStatus GetCurrentStatus() const
 	{
 		return currentStatus;
-	}
-
-	Matrix& GetMatrix()
-	{
-		return matrix;
 	}
 
 	DirectX::XMFLOAT3 GetPosition() const
@@ -37,4 +36,5 @@ private:
 	DirectX::XMFLOAT3 scale;
 	Matrix matrix;
 	EnemyStatus currentStatus;
+	Texture::TextureName texture;
 };

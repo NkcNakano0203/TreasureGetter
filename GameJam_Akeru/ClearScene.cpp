@@ -33,8 +33,7 @@ void ClearScene::Init()
 	clearImageMatrix.Identity();
 
 	clearCamera.SetViewPort();
-	int32_t n = Shader::GetInstance()->LoadShader("VertexShader.hlsl", "PixelShader.hlsl");
-	clearObj.Init(Shader::GetInstance()->GetShader(n));
+	clearObj.Init(Shader::GetInstance()->GetShader());
 }
 
 SCENE ClearScene::Update()

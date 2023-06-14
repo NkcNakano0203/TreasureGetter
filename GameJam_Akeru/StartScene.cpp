@@ -36,6 +36,8 @@ void StartScene::Init()
 	MatrixIdentity();
 	startCamera.SetViewPort();
 	int32_t n = Shader::GetInstance()->LoadShader("VertexShader.hlsl", "PixelShader.hlsl");
+	//memo:デフォルト引数でも動くけど自作シェーダーで動かしたいときは引数で渡す必要がある
+	//warning:自作シェーダーを使うときは.hlslファイルを実行ファイルフォルダにも入れること
 	obj.Init(Shader::GetInstance()->GetShader());
 
 	//Audio::GetInstance()->Init();

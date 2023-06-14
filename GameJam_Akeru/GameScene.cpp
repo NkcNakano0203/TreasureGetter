@@ -52,11 +52,10 @@ void GameScene::Init()
 	treasureBoxMatrix.Identity();
 	for (size_t i = 0; i < MaxEnemyIndex; i++)
 	{
-		enemy[i].GetMatrix().Identity();
+		enemy[i].Identity();
 	}
 	mainCamera.SetViewPort();
-	int32_t n = Shader::GetInstance()->LoadShader("VertexShader.hlsl", "PixelShader.hlsl");
-	gameObj.Init(Shader::GetInstance()->GetShader(n));
+	gameObj.Init(Shader::GetInstance()->GetShader());
 
 	playerPos = StartPos;
 }
@@ -138,8 +137,7 @@ SCENE GameScene::Update()
 
 	for (size_t i = 0; i < MaxEnemyIndex; i++)
 	{
-		mainCamera.Update(enemy[i].GetMatrix().GetView(), enemy[i].GetMatrix().GetProjection());
-		enemy[i].GetMatrix().Identity();
+		enemy[i].CameraUpdate(mainCamera);
 		enemy[i].SetScale(XMFLOAT3(0.2f, 0.2f, 1));
 	}
 
@@ -200,7 +198,7 @@ void GameScene::Render()
 	for (size_t i = 0; i < MaxEnemyIndex; i++)
 	{
 		if (enemy[i].GetCurrentStatus() == Enemy::Disable)continue;
-		gameObj.Render(enemy[i].GetMatrix().GetCB(), Texture::GetInstance()->GetTextureResource(Texture::Enemy));
+		enemy[i].Render(gameObj);
 	}
 
 	App::GetInstance()->RenderEnd();
