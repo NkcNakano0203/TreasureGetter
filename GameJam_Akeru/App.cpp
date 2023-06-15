@@ -328,8 +328,8 @@ bool App::InitD3D()
 	{
 		Texture::GetInstance()->LoadTexture("TitleLogo.png");
 		Texture::GetInstance()->LoadTexture("StartUI.png");
-		Texture::GetInstance()->LoadTexture("Player.jpg");
-		Texture::GetInstance()->LoadTexture("Enemy.jpg");
+		Texture::GetInstance()->LoadTexture("Player.png");
+		Texture::GetInstance()->LoadTexture("Enemy.png");
 		Texture::GetInstance()->LoadTexture("BoxClose.png");
 		Texture::GetInstance()->LoadTexture("BoxOpen.png");
 		Texture::GetInstance()->LoadTexture("Treasure.png");

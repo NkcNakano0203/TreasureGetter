@@ -39,10 +39,6 @@ void StartScene::Init()
 	//memo:デフォルト引数でも動くけど自作シェーダーで動かしたいときは引数で渡す必要がある
 	//warning:自作シェーダーを使うときは.hlslファイルを実行ファイルフォルダにも入れること
 	obj.Init(Shader::GetInstance()->GetShader());
-
-	//Audio::GetInstance()->Init();
-	//Audio::GetInstance()->LoadAudio("dummy.wav");
-	//Audio::GetInstance()->Play();
 }
 
 SCENE StartScene::Update()
@@ -56,10 +52,11 @@ SCENE StartScene::Update()
 
 	MatrixIdentity();
 
-	static float t = 0;
-	t += 0.02f;
-
-	titleLogoMatrix.SetScale(XMFLOAT3(3 + (0.3f * sin(t)), 3 + (0.3f * sin(t)), 1));
+	{
+		static float t = 0;
+		t += 0.02f;
+		titleLogoMatrix.SetScale(XMFLOAT3(3 + (0.3f * sin(t)), 3 + (0.3f * sin(t)), 1));
+	}
 
 	titleLogoMatrix.SetPos(XMFLOAT3(0, 0.5f, 0));
 	startUIMatrix.SetPos(XMFLOAT3(0, -1, 0));
@@ -83,6 +80,4 @@ void StartScene::Render()
 	App::GetInstance()->RenderEnd();
 }
 
-void StartScene::Term()
-{
-}
+void StartScene::Term() {}

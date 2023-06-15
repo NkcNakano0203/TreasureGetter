@@ -1,12 +1,8 @@
-#include <vector>
-
 #include <tchar.h>			// テキストや文字列を扱うために必要なヘッダーファイル
 #include <Windows.h>		// Windowsプログラムで必要になるものが入っている
 #include <D3D11.h>			// DirectX11SDKを使うために必要なもの
 #include <d3dcompiler.h>	// シェーダーファイルをコンパイルするために必要
 #include <directxcolors.h>	// DirectX::ライブラリを利用するために必要
-
-
 #include <math.h>
 #include <random>
 #include <iostream>
@@ -21,25 +17,24 @@
 #include "Polygon.h"
 #include "Shader.h"
 #include "Texture.h"
-
 #include "Enemy.h"
 
 using namespace std;
 using namespace DirectX;
 
 Camera		mainCamera;
-
-Matrix		playerMatrix;
 CPolygon	gameObj;
 
-Matrix treasureBoxMatrix;
+Matrix		playerMatrix;
+Matrix		treasureBoxMatrix;
 
+// 敵の最大数
 constexpr int32_t MaxEnemyIndex = 10;
+// オブジェクトプール用配列
 Enemy enemy[MaxEnemyIndex];
 float t = 60;
-static float spawnSpan = 20;
+constexpr float SpawnSpan = 20;
 
-bool playable = true;
 constexpr float PlayerMoveSpeed = 0.1f;
 constexpr float EnemyMoveSpeed = 0.11f;
 XMFLOAT3 playerPos = XMFLOAT3(0, 0, 0);
@@ -105,7 +100,6 @@ bool isHit(XMFLOAT3 pos1, XMFLOAT3 pos2, float radius)
 // 矢印とWASDに対応
 void PlayerMove()
 {
-	if (!playable)return;
 	XMFLOAT3 inputVec = XMFLOAT3(0, 0, 0);
 	if (Input::GetInstance()->GetKey(VK_UP) || Input::GetInstance()->GetKey(0x57)) inputVec.y = 1;
 	if (Input::GetInstance()->GetKey(VK_DOWN) || Input::GetInstance()->GetKey(0x53)) inputVec.y = -1;
@@ -150,7 +144,7 @@ SCENE GameScene::Update()
 
 	// 敵の生成
 	t += 1;
-	if (t >= spawnSpan)
+	if (t >= SpawnSpan)
 	{
 		t = 0;
 		SpawnEnemy();

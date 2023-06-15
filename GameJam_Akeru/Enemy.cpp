@@ -12,23 +12,6 @@ Enemy::Enemy()
 	texture = Texture::Enemy;
 }
 
-void Enemy::Move(DirectX::XMFLOAT3 value, bool relative)
-{
-	if (relative)
-	{
-		position = DirectX::XMFLOAT3(
-			position.x + value.x,
-			position.y + value.y,
-			position.z + value.z);
-	}
-	else
-	{
-		position = value;
-	}
-	matrix.Identity();
-	matrix.SetPos(position);
-}
-
 void Enemy::ChangeStatus(EnemyStatus nextStatus)
 {
 	currentStatus = nextStatus;
